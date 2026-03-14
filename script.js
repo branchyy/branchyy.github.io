@@ -1,60 +1,66 @@
+/**
+ * Logic for Page Switching and Sidebar Toggle
+ */
 document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('.docs-sidebar a');
-    const sections = document.querySelectorAll('.docs-section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.doc-page');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
 
-    // Handle clicks on documentation sidebar
+    // Function to switch pages
+    const switchPage = (pageId) => {
+        // Remove active class from all links and pages
+        navLinks.forEach(link => link.classList.remove('active'));
+        pages.forEach(page => page.classList.remove('active'));
+
+        // Add active class to target link and page
+        const activeLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+        const activePage = document.getElementById(pageId);
+
+        if (activeLink) activeLink.classList.add('active');
+        if (activePage) activePage.classList.add('active');
+
+        // Scroll to top of content
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Close sidebar on mobile after selection
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove('open');
+        }
+    };
+
+    // Add click listeners to nav links
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
+            const pageId = link.getAttribute('data-page');
+            switchPage(pageId);
             
-            // Remove active classes
-            navLinks.forEach(item => item.classList.remove('active'));
-            sections.forEach(item => item.classList.remove('active'));
-
-            // Add active class to current link
-            link.classList.add('active');
-
-            // Show corresponding section
-            const targetId = link.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
+            // Update URL hash without jumping
+            history.pushState(null, null, `#${pageId}`);
         });
     });
 
-    // Smooth scroll for hero buttons and navbar
-    const scrollLinks = document.querySelectorAll('a[href^="#"]:not(.docs-sidebar a)');
-    scrollLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            if (href !== '#') {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            }
+    // Handle logo click to go home (Introdução)
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchPage('introducao');
+            history.pushState(null, null, ' ');
         });
-    });
+    }
 
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
+    // Mobile Sidebar Toggle
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
         });
-    }, observerOptions);
+    }
 
-    document.querySelectorAll('.stat-card, .feature-card, .cause-item').forEach(el => {
-        observer.observe(el);
-    });
+    // Handle hash on initial load
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) {
+        switchPage(hash);
+    }
 });
