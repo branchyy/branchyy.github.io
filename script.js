@@ -41,15 +41,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle logo click to go home (Introdução)
-    const logo = document.querySelector('.logo');
-    if (logo) {
+    // Handle logo clicks to go home (Introdução)
+    const logos = document.querySelectorAll('.logo');
+    logos.forEach(logo => {
         logo.addEventListener('click', (e) => {
             e.preventDefault();
             switchPage('introducao');
             history.pushState(null, null, ' ');
+            
+            // On mobile, ensure sidebar closes when logo is clicked
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('open');
+            }
         });
-    }
+    });
 
     // Mobile Sidebar Toggle
     if (sidebarToggle) {
