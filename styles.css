@@ -145,17 +145,26 @@ h1 {
     max-width: 800px;
 }
 
-.section-card {
+.page-content-box {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 2.5rem;
-    border-radius: 16px;
-    margin-bottom: 2rem;
+    padding: 3rem;
+    border-radius: 20px;
     backdrop-filter: blur(var(--glass-blur));
+    margin-bottom: 4rem;
+}
+
+.section-card {
+    padding: 0;
+    margin-bottom: 3.5rem;
+}
+
+.section-card:last-child {
+    margin-bottom: 0;
 }
 
 .section-card h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 1.5rem;
     color: var(--primary-color);
 }
@@ -275,9 +284,13 @@ h1 {
         margin-bottom: 2rem;
     }
 
-    .section-card {
+    .page-content-box {
         padding: 1.5rem;
         border-radius: 12px;
+    }
+
+    .section-card {
+        margin-bottom: 2.5rem;
     }
 
     .persona-grid {
