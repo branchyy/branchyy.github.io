@@ -23,6 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Scroll to top of content
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
+        // Re-run Mermaid to fix visibility of diagrams in newly visible pages
+        if (window.mermaid) {
+            window.mermaid.run({
+                querySelector: '.mermaid'
+            });
+        }
+
+        // Re-run Lucide icons
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+
         // Close sidebar on mobile after selection
         if (window.innerWidth <= 768) {
             sidebar.classList.remove('open');

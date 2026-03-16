@@ -113,7 +113,7 @@ aside.sidebar {
 main.main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
-    padding: 4rem 5%;
+    padding: 2rem 5%;
     max-width: 1200px;
 }
 
@@ -134,8 +134,9 @@ main.main-content {
 
 /* Sections Styling */
 h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
 }
 
 .page-intro {
@@ -146,27 +147,33 @@ h1 {
 }
 
 .page-content-box {
-    background: var(--card-bg);
+    background: var(--sidebar-bg);
     border: 1px solid var(--border-color);
     padding: 3rem;
-    border-radius: 20px;
-    backdrop-filter: blur(var(--glass-blur));
+    border-radius: 16px;
     margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
 }
 
 .section-card {
     padding: 0;
-    margin-bottom: 3.5rem;
-}
-
-.section-card:last-child {
-    margin-bottom: 0;
+    width: 100%;
 }
 
 .section-card h2 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-bottom: 1.5rem;
     color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-card h2 i {
+    width: 24px;
+    height: 24px;
 }
 
 /* Persona Grid inside pages */

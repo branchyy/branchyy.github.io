@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentação | Branchy</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
     </script>
 </head>
 <body>
     <div class="mobile-header">
         <a href="#" class="logo">
-            <img src="branchy 1.png" alt="Branchy Logo">
+            <img src="https://i.imgur.com/uW60yBw.png" alt="Branchy Logo">
         </a>
         <button id="sidebar-toggle" aria-label="Toggle Sidebar">☰</button>
     </div>
@@ -22,7 +26,7 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="#" class="logo" data-page="introducao">
-                    <img src="branchy1.png" alt="Branchy Logo">
+                    <img src="https://i.imgur.com/uW60yBw.png" alt="Branchy Logo">
                 </a>
             </div>
             
@@ -190,7 +194,7 @@ graph TD
                 <div class="page-content-box">
                     <div class="persona-grid">
                         <div class="persona-item">
-                            <span class="persona-icon">👨‍💼</span>
+                            <i data-lucide="users" class="persona-icon"></i>
                             <h3>Engineering Leadership</h3>
                             <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">(CTOs, VPs de Eng, Staff Engineers)</p>
                             <p style="margin-top: 1rem;">O Branchy atua como o <strong>Painel de Controle da Engenharia</strong>.</p>
@@ -201,7 +205,7 @@ graph TD
                         </div>
                         
                         <div class="persona-item">
-                            <span class="persona-icon">📦</span>
+                            <i data-lucide="package" class="persona-icon"></i>
                             <h3>Produto & Stakeholders</h3>
                             <ul style="text-align: left; margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
                                 <li><strong>Roadmap de Saúde</strong>: Entenda atrasos devidos à complexidade do código base.</li>
@@ -210,7 +214,7 @@ graph TD
                         </div>
 
                         <div class="persona-item">
-                            <span class="persona-icon">🛡️</span>
+                            <i data-lucide="shield-check" class="persona-icon"></i>
                             <h3>Compliance & Segurança</h3>
                             <ul style="text-align: left; margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
                                 <li><strong>Análise Arquitetural</strong>: Detecção de vazamentos de lógica e falhas de design.</li>
@@ -219,7 +223,7 @@ graph TD
                         </div>
 
                         <div class="persona-item">
-                            <span class="persona-icon">📈</span>
+                            <i data-lucide="trending-up" class="persona-icon"></i>
                             <h3>VCs & M&A</h3>
                             <ul style="text-align: left; margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
                                 <li><strong>Due Diligence Técnica</strong>: Avaliação instantânea da qualidade do código base.</li>
